@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { CartWidget } from '../CartWidget/CartWidget'
+import { NavLink } from 'react-router-dom'
 // import logo from "./assets/logo.png"
 
 
@@ -20,9 +21,12 @@ export const NavBar = () => {
         <div className='col-6'>
           <div className='container categorias '>
               <div className='row d-flex flex-row justify-content-around'>
-                  <button className='col-3 btn btn-lg btn-light'>Cámaras</button>
+                  <NavLink to={`/category/camaras`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Cámaras</NavLink>
+                  <NavLink to={`/category/lentes`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Lentes</NavLink>
+                  <NavLink to={`/category/accesorios`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Accesorios</NavLink>
+                  {/* <button className='col-3 btn btn-lg btn-light'>Cámaras</button>
                   <button className='col-3 btn btn-lg btn-light'>Lentes</button>
-                  <button className='col-3 btn btn-lg btn-light'>Accesorios</button>
+                  <button className='col-3 btn btn-lg btn-light'>Accesorios</button> */}
                   
               </div>
           </div>

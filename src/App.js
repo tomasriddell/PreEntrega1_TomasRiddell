@@ -4,32 +4,25 @@ import { NavBar } from './components/NavBar/NavBar';
 import polaroid from "./components/ItemListContainer/assets/polaroid.jpeg"
 import canon from "./components/ItemListContainer/assets/canon.jpeg"
 import lente from "./components/ItemListContainer/assets/lente.jpeg"
+import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-        <NavBar/>
-
-        <div className='row d-flex flex-row justify-content-center mt-5'>
-          <ItemListContainer 
-          imagen={polaroid}
-          descripcion="Cámara retro polaroid"
-          precio="$49.000"
-          />
-
-          <ItemListContainer 
-          imagen={canon}
-          descripcion="Cámara Canon Reflex"
-          precio="$79.000"
-          />
-
-          <ItemListContainer 
-          imagen={lente}
-          descripcion="Lente SIGMA 50mm"
-          precio="$59.000"
-          />
+       <div className='row d-flex flex-row justify-content-center mt-5'>
+        
+          <BrowserRouter>
+            <NavBar/>
+            <Routes>
+            <Route path='/' element={<ItemListContainer/>}/>
+            <Route path='/category/:categoryId' element={<ItemListContainer/>}/>
+            <Route path='/item/:itemId' element={<ItemDetailContainer/>}/>
+            <Route path='*' element={<h1>404 NOT FOUND</h1>}/>
+            </Routes>
+          </BrowserRouter>
+        
         </div>
-
     </div>
   );
 }
