@@ -3,8 +3,10 @@ import { Item } from '../Item/Item'
 
 export const ItemList = ({productos}) => {
   return (
-    <div className='ListGroup'>
-        {productos.map(elemento => <Item key={elemento.id} {...elemento} />)}
+    <div className=' ui grid justify-content-around align-items-end'>
+        {productos.map( prod => {
+          return <Item {...prod} key={prod.id}  />
+        })}
     </div>
   )
 }

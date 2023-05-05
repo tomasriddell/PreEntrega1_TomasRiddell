@@ -39,7 +39,7 @@ export const ItemListContainer = ({greeting}) => {
   },[categoryId])
 
   return (
-    <div className='container d-flex flex-direction-column justify-content-arpund align-items-center'>
+    <div className='container mt-5'>
       <h1>{greeting}</h1>
       <ItemList productos={productos}/>
     </div>

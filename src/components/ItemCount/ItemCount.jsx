@@ -16,13 +16,13 @@ export const ItemCount = ({stock, valorInicial, onAdd}) => {
   return (
     <div className='Counter'>
         <div className='Controls'>
-            <button className='Button' onClick={disminuir}>-</button>
-            <h4 className='Number'>{cantidad}</h4>
-            <button className='Button' onClick={aumentar}>+</button>
+            <button className='ui small button' onClick={disminuir}>-</button>
+            <h4 className='ui '>{cantidad}</h4>
+            <button className='ui small button' onClick={aumentar}>+</button>
         </div>
         <div>
-            <button className='Button' onClick={()=> onAdd(cantidad)} disabled={!stock}>
-                Agregar al carrito
+            <button className='ui small button primary mt-3 ' onClick={()=> onAdd(cantidad)} disabled={!stock}>
+                <i class="shop icon mr-0"></i>
             </button>
         </div>
     </div>

@@ -22,7 +22,7 @@ export const ItemDetailContainer = () => {
       },[itemId])
 
   return (
-    <div className='ItemDetailContainer'>
+    <div className='ui items mt-5 container'>
         <ItemDetail {...producto} />
     </div>
   )
