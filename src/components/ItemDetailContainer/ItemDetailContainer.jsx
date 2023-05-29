@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 // import { getProductsById } from '../../asyncMock'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, query, where } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
 
 export const ItemDetailContainer = () => {
@@ -18,7 +18,9 @@ export const ItemDetailContainer = () => {
 
       setLoading(true)
 
-      const docRef = doc(db, 'products', itemId)
+      // const docRef = doc(db, 'productos', itemId)
+      const docRef = query(doc(db, "productos"), where("id", "==", itemId ))
+      // const docRef = db.collection('productos').doc(itemId).get()
   
         getDoc(docRef)
           .then(response=>{

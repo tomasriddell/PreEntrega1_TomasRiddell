@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom'
 // import logo from "./assets/logo.png"
 
 
-
 export const NavBar = () => {
 
   return (
@@ -24,13 +23,10 @@ export const NavBar = () => {
           <div className='container categorias '>
               <div className='row d-flex flex-row justify-content-around'>
                   
-                  <NavLink to={`/category/camaras`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Cámaras</NavLink>
-                  <NavLink to={`/category/lentes`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Lentes</NavLink>
-                  <NavLink to={`/category/accesorios`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Accesorios</NavLink>
-                  {/* <button className='col-3 btn btn-lg btn-light'>Cámaras</button>
-                  <button className='col-3 btn btn-lg btn-light'>Lentes</button>
-                  <button className='col-3 btn btn-lg btn-light'>Accesorios</button> */}
-                  
+                  <NavLink to={`/category/Cámaras`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Cámaras</NavLink>
+                  <NavLink to={`/category/Lentes`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Lentes</NavLink>
+                  <NavLink to={`/category/Accesorios`} className={({isActive}) => isActive ? 'ActiveOption btn btn-lg btn-dark' : 'Option btn btn-lg btn-light'}>Accesorios</NavLink>
+             
               </div>
           </div>
         </div>

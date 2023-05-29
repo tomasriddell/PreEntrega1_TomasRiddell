@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import { CartItem } from '../CartItem/CartItem'
 
 export const Cart = () => {
-  const { cart, clearCart, totalQuantity, total} = useContext(CartContext)
+  const { cart, clearCart, total} = useContext(CartContext)
 
-  if(totalQuantity === 0){
+  if(total === 0){
     return (
       <div>
         <h1>No hay items en el carrito</h1>

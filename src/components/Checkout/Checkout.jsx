@@ -7,18 +7,19 @@ import { CartContext } from "../../context/CartContext";
 export const Checkout = () => {
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState('')
-    const { Cart, total, clearCart } = useContext (CartContext)
+    const {Cart, total, clearCart} = useContext (CartContext)
 
     const createOrder = async ({ name, phone, email }) => {
         setLoading (true)
 
         try {
+            const orderTotal = total()
             const objOrder = {
                 buyer: {
                     name, phone, email
                 },
                 items: Cart,
-                total: total,
+                total: orderTotal,
                 date: Timestamp.fromDate(new Date())
             }
 
@@ -46,7 +47,7 @@ export const Checkout = () => {
             if(outOfStock.length === 0){
                 await batch.commit()
 
-                const orderRef = collection(db, 'products')
+                const orderRef = collection(db, 'productos')
 
                 const orderAdded = await addDoc(orderRef, objOrder)
 
