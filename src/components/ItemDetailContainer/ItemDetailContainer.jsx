@@ -18,10 +18,8 @@ export const ItemDetailContainer = () => {
 
       setLoading(true)
 
-      // const docRef = doc(db, 'productos', itemId)
-      const docRef = query(doc(db, "productos"), where("id", "==", itemId ))
-      // const docRef = db.collection('productos').doc(itemId).get()
-  
+      const docRef = doc(db, 'productos', itemId)
+
         getDoc(docRef)
           .then(response=>{
               const data = response.data()
