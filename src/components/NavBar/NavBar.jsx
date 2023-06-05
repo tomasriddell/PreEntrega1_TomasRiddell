@@ -10,7 +10,7 @@ export const NavBar = () => {
   return (
 
 
-    <div className='d-flex flex-row justify-content-around mt-5 align-items-center row'>
+    <div className='d-flex flex-row justify-content-around mt-5 mb-5 align-items-center row'>
 
         <div className='d-flex flex-row justify-content-evenly col-3'>
           {/* <img className='App-logo' src={logo} alt="logo de la tienda" /> */}

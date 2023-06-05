@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 export const ItemCount = ({stock, valorInicial, onAdd}) => {
 
     const[cantidad, setCantidad] = useState(valorInicial)
 
+  
     const aumentar = () => {
         (cantidad < stock) && setCantidad(cantidad+1) 
     }
@@ -22,7 +23,7 @@ export const ItemCount = ({stock, valorInicial, onAdd}) => {
         </div>
         <div>
             <button className='ui small button primary mt-3 ' onClick={()=> onAdd(cantidad)} disabled={!stock}>
-                <i class="shop icon mr-0"></i>
+                <i className="shop icon mr-0"></i>
             </button>
         </div>
     </div>

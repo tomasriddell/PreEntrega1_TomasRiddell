@@ -41,12 +41,16 @@ export const ItemListContainer = ({greeting}) => {
   },[categoryId])
 
   if (loading) {
-    return <h1>Cargando productos</h1>
+    return (
+      <div className='container mt-5 mb-5'>
+        <h1>Cargando productos</h1>
+      </div>
+    )
 }
 
 
   return (
-    <div className='container mt-5'>
+    <div className='container mt-5 mb-5'>
       <h1>{greeting}</h1>
       <ItemList productos={productos}/>
     </div>

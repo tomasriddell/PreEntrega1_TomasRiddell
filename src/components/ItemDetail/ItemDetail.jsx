@@ -8,12 +8,17 @@ export const ItemDetail = ({id, name, img, categoria, descripcion, price, stock}
   const [cantidadAgregada, setcantidadAgregada] = useState(0)
 
   const {addItem} = useContext(CartContext)
-
+  
+  
   const handleonAdd = (cantidad) => {
     setcantidadAgregada(cantidad)
-
+      
     const item = {
-      id, name, price
+    id: id, 
+    name: name,
+    price: price,
+    stock: stock,
+    img: img
     }
   
     addItem(item, cantidad)
@@ -52,7 +57,10 @@ export const ItemDetail = ({id, name, img, categoria, descripcion, price, stock}
 
             {
                 cantidadAgregada > 0 ? (
-                    <Link to='/cart' className='Option'>Terminar compra</Link>
+                    <div className='d-flex flex-column justify-content-around'>
+                        <Link to='/cart' className='ui green button mb-2'>Terminar compra</Link>
+                        <Link to='/' className='ui blue button'>Seguir comprando</Link>
+                    </div>
                 ) : (
                     <ItemCount valorInicial={1} stock={stock} onAdd={handleonAdd} />
                 )

@@ -10,7 +10,7 @@ import { Checkout } from './components/Checkout/Checkout';
 function App() {
   return (
     <div className="App">
-       <div className='row d-flex flex-row justify-content-center mt-5'>
+       <div className='container d-flex flex-column justify-content-center align-items-center mt-5'>
 
           <BrowserRouter>
             <CartProvider>

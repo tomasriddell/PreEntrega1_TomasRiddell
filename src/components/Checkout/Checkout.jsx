@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
-import {db} from "../../services/firebase/firebaseConfig"
+import { db } from "../../services/firebase/firebaseConfig"
 import { collection, query, where, getDocs, writeBatch, documentId, Timestamp, addDoc } from "firebase/firestore";
-import {CheckoutForm } from "../CheckoutForm/CheckoutForm"
+import { CheckoutForm } from "../CheckoutForm/CheckoutForm"
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 export const Checkout = () => {
     const [loading, setLoading] = useState(false)
@@ -10,16 +11,18 @@ export const Checkout = () => {
     const {Cart, total, clearCart} = useContext (CartContext)
 
     const createOrder = async ({ name, phone, email }) => {
+
         setLoading (true)
 
         try {
-            const orderTotal = total()
             const objOrder = {
                 buyer: {
-                    name, phone, email
+                    name: name, 
+                    phone: phone, 
+                    email: email
                 },
                 items: Cart,
-                total: orderTotal,
+                total: total,
                 date: Timestamp.fromDate(new Date())
             }
 
@@ -27,15 +30,16 @@ export const Checkout = () => {
             const outOfStock = []
             const ids = Cart.map(prod => prod.id)
             const productsRef = collection(db, 'productos')
-            const productsAddedFromFirestore = await getDocs(query(productsRef, where(documentId ()), 'in', ids))
+            const productsAddedFromFirestore = await getDocs(query(productsRef, where(documentId(), 'in', ids)))
             const {docs} = productsAddedFromFirestore
 
+
+            //con esto se actualiza el stock del producto
             docs.forEach(doc => {
                 const dataDoc = doc.data()
                 const stockDb = dataDoc.stock
-
                 const productAddedToCart = Cart.find(prod => prod.id === doc.id)
-                const prodQuantity = productAddedToCart?.quantity
+                const prodQuantity = productAddedToCart?.cantidad
 
                 if (stockDb >= prodQuantity){
                     batch.update(doc.ref, {stock: stockDb - prodQuantity})
@@ -47,15 +51,17 @@ export const Checkout = () => {
             if(outOfStock.length === 0){
                 await batch.commit()
 
-                const orderRef = collection(db, 'productos')
+                const orderRef = collection(db, 'ordenes')
 
                 const orderAdded = await addDoc(orderRef, objOrder)
 
                 setOrderId(orderAdded.id)
                 clearCart()
+
             } else {
-                console.error('Hay productos que est[an fuera de stock')
+                alert('Lo sentimos, hay productos que están fuera de stock')
             }
+
         } catch (error){
             console.log(error)
         } finally {
@@ -65,11 +71,16 @@ export const Checkout = () => {
     }
 
 if (loading) {
-    return <h1> Se está generando su orden...</h1>
+    return <h1> Se está generando tu orden...</h1>
 }
 
 if (orderId) {
-    return <h1> El Id de su pedido es: {orderId}</h1>
+    return (
+        <div>
+            <h1> El Id de su pedido es: {orderId}</h1>
+            <Link to="/" className='ui button'>Volver al home</Link>
+        </div>
+    )
 }
 
 return(

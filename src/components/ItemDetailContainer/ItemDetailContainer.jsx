@@ -1,7 +1,6 @@
 
 
 import React, { useEffect, useState } from 'react'
-// import { getProductsById } from '../../asyncMock'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 import { collection, doc, getDoc, query, where } from 'firebase/firestore'
@@ -36,8 +35,17 @@ export const ItemDetailContainer = () => {
 
       },[itemId])
 
+
+  if (loading) {
+    return (
+      <div className='container mt-5 mb-5'>
+        <h1>Cargando productos</h1>
+      </div>
+    )
+  }
+
   return (
-    <div className='ui items mt-5 container'>
+    <div className='container ui items mt-5 '>
         <ItemDetail {...producto} />
     </div>
   )

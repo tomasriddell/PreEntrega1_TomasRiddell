@@ -18,7 +18,7 @@ export const Item = ({id, name, img, price, stock}) => {
 
         <section className='description'>
             <p className='Info mb-2'>
-                Precio: ${price}
+                Precio: ${price.toLocaleString()}
                 <br />
                 Stock: {stock}
             </p>
