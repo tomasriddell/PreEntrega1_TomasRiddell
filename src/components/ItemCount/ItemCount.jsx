@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 export const ItemCount = ({stock, valorInicial, onAdd}) => {
 
